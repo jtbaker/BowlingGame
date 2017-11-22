@@ -72,7 +72,7 @@ def scoring(name):
 
     if 'X' in entry['framescontinuous'][-4:-3] and len(entry['frames'][-2]) == 1:
         print("Line 73 is hitting")
-        entry['framescore'][-2] += value_index[scorecase(entry['frames'][-1][0])]
+        entry['framescore'][-3] += value_index[scorecase(entry['frames'][-1][0])]
 
     if 'X' in entry['framescontinuous'][-2:-1]:
         print("Line 77 is hitting")
