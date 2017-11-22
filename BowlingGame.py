@@ -63,16 +63,28 @@ def scoring(name):
     #     entry['framescore'][-1] = sum([value_index[scorecase(a[1])] for a in entry['frames'][-3:]])
     #     entry['runningtotal'][-1] = sum(entry['framescore'])
     if 'X' in entry['framescontinuous'][-3:-2] and len(entry['frames'][-2]) == 1:
-        entry['framescore'][-1] += value_index[scorecase(entry['framescontinuous'][-1])]
+        print("Line 65 is hitting")
+        try:
+            entry['framescore'][-1] += value_index[scorecase(entry['frames'][-1][0])]
+        except IndexError:
+            print("Line 69 is hitting")
+            entry['framescore'][-1] += value_index[scorecase(entry['framescontinuous'][-1])]
+
+    if 'X' in entry['framescontinuous'][-4:-3] and len(entry['frames'][-2]) == 1:
+        print("Line 73 is hitting")
+        entry['framescore'][-3] += value_index[scorecase(entry['frames'][-1][0])]
 
     if 'X' in entry['framescontinuous'][-2:-1]:
+        print("Line 77 is hitting")
         if '/' in entry['frames'][-1]:
             entry['framescore'].append(value_index['/'])
             print("YESS!!!!")
         else:
             if len(entry['frames'][-1]) > 1:
+                print("Line 82 is hitting")
                 entry['framescore'][-1] += sum([value_index[a] for a in scorecase(entry['framescontinuous'][-2:])])
             elif len(entry['frames'][-1]) <= 1:
+                print("Line 85 is hitting")
                 entry['framescore'][-1] += sum([value_index[a] for a in scorecase(entry['framescontinuous'][-1:])])
 
     # if 'X' in entry['framescontinuous'][-2:-1] and len(entry['frames'][-2]) <= 1:
@@ -83,6 +95,7 @@ def scoring(name):
     #     entry['framescore'][-1] += value_index[scorecase(entry['framescontinuous'][-1])]
 
     if '/' in entry['frames'][-2]:
+        print("Line 96 is hitting")
         entry['framescore'][-1] += value_index[entry['frames'][-1][0]]
 
     entry['runningtotal'] += [sum(entry['framescore'])]
@@ -94,16 +107,19 @@ def scoring(name):
     #     entry['framescore'].append(value_index['X'])
     # Single Strikes
     if 'X' in entry['frames'][-1]:
+        print("Line 108 is hitting")
         print('X is here')
         entry['framescore'].append(value_index['X'])
 
     # Scoring spares
     elif '/' in entry['framescontinuous'][-1:]:
+        print("Line 114 is hitting")
         entry['framescore'].append(value_index['/'])
         print("YESS!!!!")
 
     #Everything else
     else:
+        print("Line 120 is hitting")
         entry['framescore'] += [sum([value_index[scorecase(a)] for a in scorecase(entry['framescontinuous'][-2:])])]
 
 def inputfunction():
