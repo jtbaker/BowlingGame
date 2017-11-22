@@ -65,17 +65,17 @@ def scoring(name):
     if 'X' in entry['framescontinuous'][-3:-2] and len(entry['frames'][-2]) == 1:
         print("Line 65 is hitting")
         try:
-            entry['framescore'][-1] += value_index[scorecase(entry['frames'][-1][0])]
+            entry['framescore'][-2] += value_index[scorecase(entry['framescontinuous'][-1])]
         except IndexError:
             print("Line 69 is hitting")
             entry['framescore'][-1] += value_index[scorecase(entry['framescontinuous'][-1])]
 
     if 'X' in entry['framescontinuous'][-4:-3] and len(entry['frames'][-2]) == 1:
-        print("Line 73 is hitting")
+        print("Line 72 is hitting")
         entry['framescore'][-3] += value_index[scorecase(entry['frames'][-1][0])]
 
     if 'X' in entry['framescontinuous'][-2:-1]:
-        print("Line 77 is hitting")
+        print("Line 76 is hitting")
         if '/' in entry['frames'][-1]:
             entry['framescore'].append(value_index['/'])
             print("YESS!!!!")
