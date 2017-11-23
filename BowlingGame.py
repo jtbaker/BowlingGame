@@ -114,6 +114,18 @@ def scoring(name, framenumber):
         print("Line 96 is hitting")
         entry['framescore'][-1] += value_index[entry['frames'][-1][0]]
 
+    # if framenumber == 9 and entry['framescontinuous'][-1] == '/' or entry['framescontinuous'][-2] =='X':
+    #     pinsdown = inputfunction()
+    #     while len(pinsdown) > 1 and value_index[pinsdown[0]] != '/':
+    #         pinsdown = inputfunction()
+    #     print("You've reached the last shot on the last frame. Good Luck!")
+    #     entry['frames'][-1].extend(pinsdown)
+    #     entry['framescontinuous'].extend(pinsdown)
+
+    # Updating the running total if it has changed since the last frame.
+    if framenumber > 2 and entry['runningtotal'] != sum(entry['framescore']):
+        entry['runningtotal'][-1] = sum(entry['framescore'][:-1])
+
     entry['runningtotal'] += [sum(entry['framescore'])]
 
     # Scoring strikes
