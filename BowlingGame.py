@@ -172,10 +172,10 @@ for playerfirstround in gameframe:
     # Attaching the frame details to my dictionary.
     gameframe[playerfirstround]['frames'].extend([pinsdown])
     gameframe[playerfirstround]['framescontinuous'].extend(pinsdown)
-    if '/' or 'X' not in pinsdown:
-        gameframe[playerfirstround]['framescore'].append(sum(value_index[a] for a in pinsdown))
-    else:
-        continue
+    # if '/' or 'X' not in pinsdown:
+    gameframe[playerfirstround]['framescore'].append(sum(value_index[a] for a in scorecase(pinsdown)))
+    # else:
+    #     continue
     print(json.dumps(gameframe, indent=2))
 
 
