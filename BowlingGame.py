@@ -176,8 +176,7 @@ for playerfirstround in gameframe:
         gameframe[playerfirstround]['framescore'].append(sum(value_index[a] for a in pinsdown))
     else:
         continue
-
-print(gameframe)
+    print(json.dumps(gameframe, indent=2))
 
 
 for framenumber in range(10):
@@ -185,3 +184,4 @@ for framenumber in range(10):
         # Getting the frame details into a list.
         scoring(player,framenumber)
         print(gameframe[player],'\n')
+    print(json.dumps(gameframe, indent=2))
