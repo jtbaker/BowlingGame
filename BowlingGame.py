@@ -64,15 +64,20 @@ def scoring(name):
     #     entry['runningtotal'][-1] = sum(entry['framescore'])
     if 'X' in entry['framescontinuous'][-3:-2] and len(entry['frames'][-2]) == 1:
         print("Line 65 is hitting")
+        print("\n\n\n",gameframe,'\n\n\n')
         try:
             entry['framescore'][-2] += value_index[scorecase(entry['framescontinuous'][-1])]
         except IndexError:
             print("Line 69 is hitting")
             entry['framescore'][-1] += value_index[scorecase(entry['framescontinuous'][-1])]
 
-    if 'X' in entry['framescontinuous'][-4:-3] and len(entry['frames'][-2]) == 1:
-        print("Line 73 is hitting")
-        entry['framescore'][-3] += value_index[scorecase(entry['frames'][-1][0])]
+    if 'X' in entry['framescontinuous'][-3:-2] and len(entry['frames'][-1]) == 2 and '/' not in entry['frames'][-1]:
+        print('line 74 is hitting')
+        entry['framescore'][-2] += sum([value_index[b] for b in [scorecase(a) for a in entry['framescontinuous'][-2:]]])
+
+    # if 'X' in entry['framescontinuous'][-4:-3] and len(entry['frames'][-2]) == 1:
+    #     print("Line 73 is hitting")
+    #     entry['framescore'][-3] += value_index[scorecase(entry['frames'][-1][0])]
 
     if 'X' in entry['framescontinuous'][-2:-1]:
         print("Line 77 is hitting")
@@ -156,4 +161,4 @@ for framenumber in range(10):
     for player in gameframe:
         # Getting the frame details into a list.
         scoring(player)
-        print(gameframe[player])
+        print(gameframe[player],'\n')
