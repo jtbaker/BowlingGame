@@ -48,7 +48,7 @@ def getname():
 #         return value_index
 #     if
 
-def scoring(name):
+def scoring(name, framenumber):
     #local variable for quick reference
     entry = gameframe.get(name)
 
@@ -65,15 +65,26 @@ def scoring(name):
     if 'X' in entry['framescontinuous'][-3:-2] and len(entry['frames'][-2]) == 1:
         print("Line 65 is hitting")
         print("\n\n\n",gameframe,'\n\n\n')
-        try:
-            entry['framescore'][-2] += value_index[scorecase(entry['framescontinuous'][-1])]
-        except IndexError:
-            print("Line 69 is hitting")
-            entry['framescore'][-1] += value_index[scorecase(entry['framescontinuous'][-1])]
+        if ['X','X'] == entry['framescontinuous'][-4:-2]:
+            #Max value for a strike is 30 points. Testing to invalidate invalid recursions for consecutive strikes.
+            if entry['framescore'][-2] <= 20:
+                entry['framescore'][-2] += sum([value_index[a] for a in scorecase(entry['frames'][-1][0])])
+            else:
+                pass
+            if entry['framescore'][-1] <= 20:
+                entry['framescore'][-1] += sum([value_index[a] for a in scorecase(entry['framescontinuous'][-2:])])
+            else:
+                pass
+        else:
+            try:
+                entry['framescore'][-2] += value_index[scorecase(entry['framescontinuous'][-1])]
+            except IndexError:
+                print("Line 69 is hitting")
+                entry['framescore'][-1] += value_index[scorecase(entry['framescontinuous'][-1])]
 
-    if 'X' in entry['framescontinuous'][-3:-2] and len(entry['frames'][-1]) == 2 and '/' not in entry['frames'][-1]:
-        print('line 74 is hitting')
-        entry['framescore'][-2] += sum([value_index[b] for b in [scorecase(a) for a in entry['framescontinuous'][-2:]]])
+    # if 'X' in entry['framescontinuous'][-3:-2] and len(entry['frames'][-1]) == 2 and '/' not in entry['frames'][-1]:
+    #     print('line 74 is hitting')
+    #     entry['framescore'][-2] += sum([value_index[b] for b in [scorecase(a) for a in entry['framescontinuous'][-2:]]])
 
     # if 'X' in entry['framescontinuous'][-4:-3] and len(entry['frames'][-2]) == 1:
     #     print("Line 73 is hitting")
@@ -160,5 +171,5 @@ print(gameframe)
 for framenumber in range(10):
     for player in gameframe:
         # Getting the frame details into a list.
-        scoring(player)
+        scoring(player,framenumber)
         print(gameframe[player],'\n')
