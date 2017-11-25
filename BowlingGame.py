@@ -41,7 +41,7 @@ def scorecase(items):
     else:
         return items
 
-#Getting the number of players in the game
+# Getting the number of players in the game
 def getplayercount():
     playercount = float(input("How many players are in your game today? Please reply with a whole number. "))
     #playercount = requests.get(url="https://bowlinggame.com", params="How many players are in your game today? Please reply with a whole number")
