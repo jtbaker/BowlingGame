@@ -77,7 +77,6 @@ def scoring(name, framenumber):
 
     # Two consecutive strikes.
     if 'X' in entry['framescontinuous'][-3:-2] and len(entry['frames'][-2]) == 1:
-        print("\n\n\n",gameframe,'\n\n\n')
         if ['X','X'] == entry['framescontinuous'][-4:-2]:
             # Max value for a strike is 30 points. Testing to invalidate invalid recursions for consecutive strikes.
             if entry['framescore'][-2] <= 20:
@@ -139,9 +138,7 @@ def scoring(name, framenumber):
         entry['frames'][-1].extend(pinsdown)
         entry['framescontinuous'].extend(pinsdown)
         if '/' in entry['framescontinuous'][-1]:
-            print("Line 114 is hitting")
             entry['framescore'][-1] += value_index['/']
-            print("YESS!!!!")
         else:
             entry['framescore'][-1] += value_index[scorecase(pinsdown[0])]
         entry['runningtotal'][-1] = sum(entry['framescore'])
@@ -163,6 +160,6 @@ for framenumber in range(10):
     for player in gameframe:
         # Getting the frame details into a list.
         scoring(player,framenumber)
-    # Uncomment the line below to view the contents of each section as the recursion evaluates.
+    # Uncomment the line below to view the contents of each section as the iteration evaluates.
     # print(json.dumps(gameframe, indent=2))
 
