@@ -533,7 +533,14 @@
       <option name="project" value="LOCAL" />
       <updated>1511627586252</updated>
     </task>
-    <option name="localTasksCounter" value="24" />
+    <task id="LOCAL-00024" summary="Added comments to document arguments and control flow. Added virtual environment to begin building out Flask REST functionality.">
+      <created>1511627781399</created>
+      <option name="number" value="00024" />
+      <option name="presentableId" value="LOCAL-00024" />
+      <option name="project" value="LOCAL" />
+      <updated>1511627781399</updated>
+    </task>
+    <option name="localTasksCounter" value="25" />
     <servers />
   </component>
   <component name="ToolWindowManager">
@@ -627,7 +634,8 @@
     <MESSAGE value="Works." />
     <MESSAGE value="Incorporated everything to the main iteration. Added section with support for last frame recursion and additional input for strikes spares." />
     <MESSAGE value="Added comments to document arguments and control flow." />
-    <option name="LAST_COMMIT_MESSAGE" value="Added comments to document arguments and control flow." />
+    <MESSAGE value="Added comments to document arguments and control flow. Added virtual environment to begin building out Flask REST functionality." />
+    <option name="LAST_COMMIT_MESSAGE" value="Added comments to document arguments and control flow. Added virtual environment to begin building out Flask REST functionality." />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager />
