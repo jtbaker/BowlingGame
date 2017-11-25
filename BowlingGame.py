@@ -1,5 +1,8 @@
 import requests
+from flask import Flask, abort, jsonify, make_response, request
 import json
+
+app = Flask(__name__)
 
 r = requests.get('https://api.github.com/user', auth=('user','password'))
 
@@ -57,6 +60,8 @@ def getname():
     return str(playername)
 
 # A scoring function that evaluates the contents of each frame, and scores it based on its contents.
+# Takes arguments name (from the getname() object for each player in the dictionary for reference,
+# and framenumber (the frame number (minus one, since we are starting from zero in our iteration).
 def scoring(name, framenumber):
     # Local variable for quick reference
     entry = gameframe.get(name)
@@ -160,3 +165,4 @@ for framenumber in range(10):
         scoring(player,framenumber)
     # Uncomment the line below to view the contents of each section as the recursion evaluates.
     # print(json.dumps(gameframe, indent=2))
+
