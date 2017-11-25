@@ -1,10 +1,9 @@
-import requests
+#!flask/bin/python3.6
+
 from flask import Flask, abort, jsonify, make_response, request
 import json
 
 app = Flask(__name__)
-
-r = requests.get('https://api.github.com/user', auth=('user','password'))
 
 # Matrix for evaluating the values of pins down. '/' denotes a spare, and 'X' a strike.
 value_index = {
