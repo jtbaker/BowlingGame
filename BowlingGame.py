@@ -42,21 +42,16 @@ class Game:
                 # Max value for a strike is 30 points. Testing to invalidate invalid recursions for consecutive strikes.
                 if self.framescore[-2] <= 20:
                     self.framescore[-2]+=sum([value_index[a] for a in scorecase(self.frames[-1][0])])
-                    print('line 44 is hitting')
                 else:
                     pass
                 if self.framescore[-1] <= 20:
                     self.framescore[-1]+=sum([value_index[a] for a in scorecase(self.framescontinuous[-2:])])
-                    print('line 48 is hitting')
                 else:
                     pass
             else:
-                print('line 53 is hitting')
                 try:
                     self.framescore[-2]+=value_index[scorecase(self.framescontinuous[-1])]
-                    print('line 56 is hitting')
                 except IndexError:
-                    print('line 58 is hitting')
                     self.framescore[-1]+=sum([value_index[a] for a in scorecase(self.framescontinuous[-2:])])
 
         # One consecutive strike
