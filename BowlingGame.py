@@ -1,7 +1,7 @@
 #!flask/bin/python3.6
 
 from flask import Flask, abort, jsonify, make_response, request
-import json
+import jsonpickle, json
 
 app = Flask(__name__)
 
@@ -20,6 +20,103 @@ value_index = {
     'X': 10,
     '/': 10
 }
+
+class Game:
+    def __init__(self, name):
+        self.name=name
+        self.frames=[]
+        self.framescontinuous=[]
+        self.framescore=[]
+        self.runningtotal=[]
+
+    def update(self, pinsdown):
+        self.frames.append(pinsdown)
+        self.framescontinuous.extend(pinsdown)
+
+    def recursion(self, pinsdown):
+        # Recursions for updating 'framescore' based on new frames. Evaluates before new frames are scored.
+
+        # Two consecutive strikes.
+        if 'X' in self.framescontinuous[-3:-2] and len(self.frames[-2]) == 1:
+            if ['X', 'X'] == self.framescontinuous[-4:-2]:
+                # Max value for a strike is 30 points. Testing to invalidate invalid recursions for consecutive strikes.
+                if self.framescore[-2] <= 20:
+                    self.framescore[-2]+=sum([value_index[a] for a in scorecase(self.frames[-1][0])])
+                    print('line 44 is hitting')
+                else:
+                    pass
+                if self.framescore[-1] <= 20:
+                    self.framescore[-1]+=sum([value_index[a] for a in scorecase(self.framescontinuous[-2:])])
+                    print('line 48 is hitting')
+                else:
+                    pass
+            else:
+                print('line 53 is hitting')
+                try:
+                    self.framescore[-2]+=value_index[scorecase(self.framescontinuous[-1])]
+                    print('line 56 is hitting')
+                except IndexError:
+                    print('line 58 is hitting')
+                    self.framescore[-1]+=sum([value_index[a] for a in scorecase(self.framescontinuous[-2:])])
+
+        # One consecutive strike
+        if 'X' in self.framescontinuous[-2:-1]:
+            if '/' in self.frames[-1]:
+                self.framescore.append(value_index['/'])
+            else:
+                if len(self.frames[-1]) > 1:
+                    self.framescore[-1]+=sum([value_index[a] for a in scorecase(self.framescontinuous[-2:])])
+                elif len(self.frames[-1]) <= 1:
+                    self.framescore[-1]+=sum([value_index[a] for a in scorecase(self.framescontinuous[-1:])])
+
+        # Spare recursions.
+        try:
+            if '/' in self.frames[-2]:
+                self.framescore[-1]+=value_index[self.frames[-1][0]]
+        except IndexError:
+            pass
+
+    # Scoring a strike in any given frame.
+    def scoring(self, framenumber):
+        if 'X' in self.frames[-1]:
+            self.framescore.append(value_index['X'])
+
+        # Scoring spares
+        elif '/' in self.framescontinuous[-1:]:
+            self.framescore.append(value_index['/'])
+
+        # Anything else
+        else:
+            self.framescore += [sum([value_index[scorecase(a)] for a in scorecase(self.framescontinuous[-2:])])]
+
+        # Updating the previous running total if new bowls have changed the values.
+        if framenumber >= 1 and self.runningtotal[-1] != sum(self.framescore):
+            self.runningtotal[-1] = sum(self.framescore[:-1])
+        if framenumber >= 2 and self.runningtotal[-2] != sum(self.framescore[:-1]):
+            self.runningtotal[-2] = sum(self.framescore[:-2])
+
+        # Appending the new running total to each new instance of a frame. The sum of the current scores for all players.
+        self.runningtotal += [sum(self.framescore)]
+
+    # Evaluates on the final frame in the range, if that frame was a strike or a spare.
+    def finalframe(self,framenumber):
+        if framenumber==9 and self.framescontinuous[-1] in ('X', '/'):
+            print("This is the last frame. To determine the value of your last roll, please bowl again")
+            pinsdown=inputfunction()
+            self.frames[-1].extend(pinsdown)
+            self.framescontinuous.extend(pinsdown)
+            if '/' in self.framescontinuous[-1]:
+                self.framescore[-1]+=value_index['/']
+            else:
+                self.framescore[-1]+=value_index[scorecase(pinsdown[0])]
+            self.runningtotal[-1]=sum(self.framescore)
+            # If a second strike is bowled on the final frame.
+            if self.framescontinuous[-1] == 'X':
+                # pinsdown=inputfunction()
+                self.frames[-1].extend(pinsdown)
+                self.framescontinuous.extend(pinsdown)
+                self.framescore[-1]+=value_index[scorecase(pinsdown[0])]
+                self.runningtotal[-1]=sum(self.framescore)
 
 # Function to get pin input from the user.
 def inputfunction():
@@ -59,106 +156,25 @@ def getname():
     return str(playername)
 
 # A scoring function that evaluates the contents of each frame, and scores it based on its contents.
-# Takes arguments name (from the getname() object for each player in the dictionary for reference,
+# Takes arguments name (from the 'name' object for each player in the dictionary for reference,
 # and framenumber (the frame number (minus one, since we are starting from zero in our iteration).
 def scoring(name, framenumber):
-    # Local variable for quick reference
-    entry = gameframe.get(name)
-
-    # Getting the frame details into a list.
-    pinsdown = inputfunction()
-
-    #Attaching the frame details to my dictionary.
-    entry['frames'].append(pinsdown)
-    entry['framescontinuous'].extend(pinsdown)
-
-    # Recursions for updating 'framescore' based on new frames. Evaluates before new frames are scored.
-
-    # Two consecutive strikes.
-    if 'X' in entry['framescontinuous'][-3:-2] and len(entry['frames'][-2]) == 1:
-        if ['X','X'] == entry['framescontinuous'][-4:-2]:
-            # Max value for a strike is 30 points. Testing to invalidate invalid recursions for consecutive strikes.
-            if entry['framescore'][-2] <= 20:
-                entry['framescore'][-2] += sum([value_index[a] for a in scorecase(entry['frames'][-1][0])])
-            else:
-                pass
-            if entry['framescore'][-1] <= 20:
-                entry['framescore'][-1] += sum([value_index[a] for a in scorecase(entry['framescontinuous'][-2:])])
-            else:
-                pass
-        else:
-            try:
-                entry['framescore'][-2] += value_index[scorecase(entry['framescontinuous'][-1])]
-            except IndexError:
-                entry['framescore'][-1] += value_index[scorecase(entry['framescontinuous'][-1])]
-
-    # One consecutive strike
-    if 'X' in entry['framescontinuous'][-2:-1]:
-        if '/' in entry['frames'][-1]:
-            entry['framescore'].append(value_index['/'])
-        else:
-            if len(entry['frames'][-1]) > 1:
-                entry['framescore'][-1] += sum([value_index[a] for a in scorecase(entry['framescontinuous'][-2:])])
-            elif len(entry['frames'][-1]) <= 1:
-                entry['framescore'][-1] += sum([value_index[a] for a in scorecase(entry['framescontinuous'][-1:])])
-
-    # Spare recursions.
-    try:
-        if '/' in entry['frames'][-2]:
-            entry['framescore'][-1] += value_index[entry['frames'][-1][0]]
-    except IndexError:
-        pass
-
-    # Scoring section.
-
-    # Scoring a strike in any given frame.
-    if 'X' in entry['frames'][-1]:
-        entry['framescore'].append(value_index['X'])
-
-    # Scoring spares
-    elif '/' in entry['framescontinuous'][-1:]:
-        entry['framescore'].append(value_index['/'])
-
-    # Anything else
-    else:
-        entry['framescore'] += [sum([value_index[scorecase(a)] for a in scorecase(entry['framescontinuous'][-2:])])]
-
-    # Updating the previous running total if new bowls have changed the values.
-    if framenumber >= 1 and entry['runningtotal'] != sum(entry['framescore']):
-        entry['runningtotal'][-1] = sum(entry['framescore'][:-1])
-
-    # Appending the new running total to each new instance of a frame. The sum of the current scores for all players.
-    entry['runningtotal'] += [sum(entry['framescore'])]
-
-    # Final frame - only evaluates if a strike or spare is bowled.
-    if framenumber == 9 and entry['framescontinuous'][-1] in ('X','/'):
-        print("This is the last frame. To determine the value of your last roll, please bowl again")
-        pinsdown = inputfunction()
-        entry['frames'][-1].extend(pinsdown)
-        entry['framescontinuous'].extend(pinsdown)
-        if '/' in entry['framescontinuous'][-1]:
-            entry['framescore'][-1] += value_index['/']
-        else:
-            entry['framescore'][-1] += value_index[scorecase(pinsdown[0])]
-        entry['runningtotal'][-1] = sum(entry['framescore'])
-        # If a second strike is bowled on the final frame.
-        if entry['framescontinuous'][-1] == 'X':
-            pinsdown = inputfunction()
-            entry['frames'][-1].extend(pinsdown)
-            entry['framescontinuous'].extend(pinsdown)
-            entry['framescore'][-1] += value_index[scorecase(pinsdown[0])]
-            entry['runningtotal'][-1] = sum(entry['framescore'])
+    pinsdown=inputfunction()
+    name.update(pinsdown)
+    name.recursion(pinsdown)
+    name.scoring(framenumber)
+    name.finalframe(framenumber)
 
 # Assigning the function call to a variable.
 playercount = getplayercount()
-
+# Getting the names for the players.
+names=[getname() for player in range(playercount)]
 # A new, empty frame dictionary object with the details for each player in the game.
-gameframe = {getname(): {'frames':[], 'framescontinuous':[], 'framescore':[], 'runningtotal':[]} for player in range(playercount)}
+gameframe = {name: Game(name) for name in names}
 
 for framenumber in range(10):
     for player in gameframe:
         # Getting the frame details into a list.
-        scoring(player,framenumber)
+        scoring(gameframe[player],framenumber)
     # Uncomment the line below to view the contents of each section as the iteration evaluates.
-    # print(json.dumps(gameframe, indent=2))
-
+    print(jsonpickle.encode(gameframe))
