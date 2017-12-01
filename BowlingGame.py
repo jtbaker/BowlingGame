@@ -25,6 +25,8 @@ value_index = {
     '/': 10
 }
 
+# The object that represents the game details for each individual player. Initiates the variables name, framescontinuous,
+# frames, framescore, runningtotal, which we will subsequently operate on.
 class Game:
     def __init__(self, name):
         self.name = name
@@ -37,7 +39,7 @@ class Game:
         self.frames.append(pinsdown)
         self.framescontinuous.extend(pinsdown)
 
-    def recursion(self, pinsdown):
+    def recursion(self):
         # Recursions for updating 'framescore' based on new frames. Evaluates before new frames are scored.
 
         # Two consecutive strikes.
@@ -60,7 +62,7 @@ class Game:
         # One consecutive strike
         if 'X' in self.framescontinuous[-2:-1] and ['X', 'X'] != self.framescontinuous[-4:-2]:
             if '/' in self.frames[-1]:
-                self.framescore.append(value_index['/'])
+                self.framescore[-1]+=(value_index['/'])
             else:
                 if len(self.frames[-1]) > 1:
                     self.framescore[-1]+=sum([value_index[a] for a in scorecase(self.framescontinuous[-2:])])
@@ -70,7 +72,7 @@ class Game:
         # Spare recursions.
         try:
             if '/' in self.frames[-2]:
-                self.framescore[-1]+=value_index[self.frames[-1][0]]
+                self.framescore[-1] += value_index[self.frames[-1][0]]
         except IndexError:
             pass
 
@@ -97,15 +99,16 @@ class Game:
         self.runningtotal += [sum(self.framescore)]
 
     # Evaluates on the final frame in the range, if that frame was a strike or a spare.
-    def finalframe(self, framenumber, pinsdown):
+    def finalframe(self, framenumber, pinsdown, name):
         if framenumber == 10 and self.framescontinuous[-1] in ('X', '/'):
-            print("This is the last frame. To determine the value of your last roll, please bowl again")
             self.frames[-1].extend(pinsdown)
             self.framescontinuous.extend(pinsdown)
-            if '/' in self.framescontinuous[-1]:
-                self.framescore[-1]+=value_index['/']
-            else:
-                self.framescore[-1]+=value_index[scorecase(pinsdown[0])]
+            self.recursion()
+            if len(self.frames[-1]) <=2:
+                if '/' in self.frames[-1]:
+                    self.framescore[-1] += value_index[scorecase(pinsdown[-1][0])]
+                else:
+                    self.framescore[-1]+=value_index[scorecase(self.framescontinuous[-2:])]
             self.runningtotal[-1]=sum(self.framescore)
             # If a second strike is bowled on the final frame.
             # if self.framescontinuous[-1] == 'X':
@@ -116,15 +119,6 @@ class Game:
             #     self.runningtotal[-1]=sum(self.framescore)
         return jsonpickle.encode(gameframe)
 
-# Function to get pin input from the user.
-def inputfunction():
-    pinsdown=[a if a in value_index else 'Error' for a in input(
-        "Please enter the space-separated value(s) for the pins that you knocked down. 0-9 for open/partial frames, '/' for a spare, and 'X' for a strike. ").split()]
-    #Testing for invalid input
-    while 'Error' in pinsdown or bool(pinsdown) == False or sum([value_index[a] for a in pinsdown if a.isdigit() is True]) > 9:
-        pinsdown=[a if a in value_index else 'Error' for a in input(
-            "I'm sorry, that was invalid input. Please enter the space-separated value(s) for the pins that you knocked down.\n0-9 for open/partial frames, '/' for a spare, and 'X' for a strike. If digits, the sum should be no greater than 9. ").split()]
-    return pinsdown
 
 # This function evaluates the items in a given frame. An iterable is passed into the function, which checks to see if a score or a strike are a part of the frame. If so, only those values are returned. If not, all the items in the argument are returned from the function.
 def scorecase(items):
@@ -135,7 +129,7 @@ def scorecase(items):
     else:
         return items
 
-
+# Getting the player names into our dictionary.
 @app.route('/bowlingapi/gamedetails', methods=['POST'])
 def gamedetails():
     gamedetails = request.json.get('players', "")
@@ -144,23 +138,22 @@ def gamedetails():
 
 
 # A scoring function that evaluates the contents of each frame, and scores it based on its contents.
-# Takes arguments name (from the 'name' object for each player in the dictionary for reference,
-# and framenumber (the frame number (minus one, since we are starting from zero in our iteration).
-# @app.route('/Bowlingapi/scoring/<str:pinsdown>', methods=['PUT'])
+# Takes arguments name (from the 'name' object for each player in the dictionary for reference, which we get from the API endpoint.
+# and frame number.
 @app.route('/bowlingapi/frameinput/<name>', methods=['POST'])
 def frameinput(name):
     pinsdown = request.json.get('pinsdown', "").split()
     pinsdown = [a if a in value_index else 'Error' for a in pinsdown]
-    if 'Error' in pinsdown:
-        return make_response(jsonify({'Error': 'Invalid Input'}))
+    if 'Error' in pinsdown or sum([value_index[a] for a in pinsdown if a.isdigit() is True]) > 9:
+        return make_response(jsonify({name: 'Invalid Input'}))
     else:
         framenumber = len(gameframe[name].frames)
         if framenumber <= 9:
             gameframe[name].update(pinsdown)
-            gameframe[name].recursion(pinsdown)
+            gameframe[name].recursion()
             gameframe[name].scoring(framenumber)
         if framenumber == 10:
-            gameframe[name].finalframe(framenumber, pinsdown)
+            gameframe[name].finalframe(framenumber, pinsdown, name)
         return jsonpickle.encode(gameframe, keys=True)
 
 if __name__ == '__main__':
