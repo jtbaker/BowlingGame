@@ -5,6 +5,8 @@ import jsonpickle, json
 
 app = Flask(__name__)
 
+# Dictionary object the represents the individual game/scoring for each player.
+# Each Player's name key will have a Game object associated as the value.
 gameframe = {}
 
 # Matrix for evaluating the values of pins down. '/' denotes a spare, and 'X' a strike.
@@ -133,20 +135,6 @@ def scorecase(items):
     else:
         return items
 
-# Getting the number of players in the game
-@app.route('/bowlingapi/<int:playercount>', methods=['POST'])
-def getplayercount(playercount):
-    # playercount = float(input("How many players are in your game today? Please reply with a whole number. "))
-    #playercount = requests.get(url="https://bowlinggame.com", params="How many players are in your game today? Please reply with a whole number")
-    # Accounting for nonvalid input in the getplayercount function
-    if playercount != abs(int(playercount)):
-        return int(playercount)
-
-# playercount = getplayercount(playercount)
-#         # while playercount != abs(int(playercount)):
-#         #     playercount = float(input(" I'm sorry, that was not a valid answer. How many players are in your game today? Please reply with a whole number. "))
-#             #playercount = requests.get(url="https://bowlinggame.com", params="I'm sorry, that was invalid input. Please try again. Whole numbers only. ")
-
 
 @app.route('/bowlingapi/gamedetails', methods=['POST'])
 def gamedetails():
@@ -154,50 +142,26 @@ def gamedetails():
     gameframe.update({name:Game(name) for name in gamedetails})
     return jsonpickle.encode(gameframe)
 
-# Getting each player's name in the game.
-@app.route('/bowlingapi/names/<playername>', methods=['POST'])
-def getname():
-    playername = input("Please enter your name. ")
-    return playername
-    #playername = requests.get(url="https://bowlinggame.com",
-                               #params="Please enter your name.")
 
 # A scoring function that evaluates the contents of each frame, and scores it based on its contents.
 # Takes arguments name (from the 'name' object for each player in the dictionary for reference,
 # and framenumber (the frame number (minus one, since we are starting from zero in our iteration).
 # @app.route('/Bowlingapi/scoring/<str:pinsdown>', methods=['PUT'])
-@app.route('/bowlingapi/frameinput/<name>', methods=['POST','GET'])
+@app.route('/bowlingapi/frameinput/<name>', methods=['POST'])
 def frameinput(name):
     pinsdown = request.json.get('pinsdown', "").split()
-    framenumber = len(gameframe[name].frames)
-    if framenumber <= 9:
-        gameframe[name].update(pinsdown)
-        gameframe[name].recursion(pinsdown)
-        gameframe[name].scoring(framenumber)
-    if framenumber == 10:
-        gameframe[name].finalframe(framenumber, pinsdown)
-    # if framenumber == 10:
-    #     return abort(200)
-    # framenumber = len(gameframe[name].frames)
-    # except IndexError:
-    #     return make_response(jsonify({'error': 'Not found'}))
-    # gameframe['Jason'].update(pinsdown)
-    # gameframe['Jason'].recursion(pinsdown)
-    # framenumber = len(gameframe['Jason']['frames'])
-    return jsonpickle.encode(gameframe, keys=True)
-# Assigning the function call to a variable.
-# playercount = getplayercount()
-# Getting the names for the players.
-# names=[getname() for player in range(playercount)]
-# A new, empty frame dictionary object with the details for each player in the game.
-
-# def playbowling():
-#     for framenumber in range(10):
-#         for player in gameframe:
-#             # Getting the frame details into a list.
-#             scoring(gameframe[player],framenumber)
-#         # Uncomment the line below to view the contents of each section as the iteration evaluates.
-#         print(jsonpickle.encode(gameframe))
+    pinsdown = [a if a in value_index else 'Error' for a in pinsdown]
+    if 'Error' in pinsdown:
+        return make_response(jsonify({'Error': 'Invalid Input'}))
+    else:
+        framenumber = len(gameframe[name].frames)
+        if framenumber <= 9:
+            gameframe[name].update(pinsdown)
+            gameframe[name].recursion(pinsdown)
+            gameframe[name].scoring(framenumber)
+        if framenumber == 10:
+            gameframe[name].finalframe(framenumber, pinsdown)
+        return jsonpickle.encode(gameframe, keys=True)
 
 if __name__ == '__main__':
     app.run(debug=True)
