@@ -1,6 +1,6 @@
 #!flask/bin/python3.6
 
-from flask import Flask, abort, jsonify, make_response, request
+from flask import Flask, abort, jsonify, make_response, request, render_template
 import jsonpickle, json
 
 app = Flask(__name__)
@@ -25,11 +25,11 @@ value_index = {
 
 class Game:
     def __init__(self, name):
-        self.name=name
-        self.frames=[]
-        self.framescontinuous=[]
-        self.framescore=[]
-        self.runningtotal=[]
+        self.name = name
+        self.framescontinuous = []
+        self.frames = []
+        self.framescore = []
+        self.runningtotal = []
 
     def update(self, pinsdown):
         self.frames.append(pinsdown)
@@ -42,14 +42,13 @@ class Game:
         if 'X' in self.framescontinuous[-3:-2] and len(self.frames[-2]) == 1:
             if ['X', 'X'] == self.framescontinuous[-4:-2]:
                 # Max value for a strike is 30 points. Testing to invalidate invalid recursions for consecutive strikes.
-                if self.framescore[-2] <= 20:
-                    self.framescore[-2]+=sum([value_index[a] for a in scorecase(self.frames[-1][0])])
-                else:
-                    pass
                 if self.framescore[-1] <= 20:
                     self.framescore[-1]+=sum([value_index[a] for a in scorecase(self.framescontinuous[-2:])])
                 else:
-                    pass
+                    if self.framescore[-2] <= 20:
+                        self.framescore[-2]+=sum([value_index[a] for a in scorecase(self.frames[-1][0])])
+                if self.framescore[-2] <= 20:
+                    self.framescore[-2] += sum([value_index[a] for a in scorecase(self.frames[-1][0])])
             else:
                 try:
                     self.framescore[-2]+=value_index[scorecase(self.framescontinuous[-1])]
@@ -57,7 +56,7 @@ class Game:
                     self.framescore[-1]+=sum([value_index[a] for a in scorecase(self.framescontinuous[-2:])])
 
         # One consecutive strike
-        if 'X' in self.framescontinuous[-2:-1]:
+        if 'X' in self.framescontinuous[-2:-1] and ['X', 'X'] != self.framescontinuous[-4:-2]:
             if '/' in self.frames[-1]:
                 self.framescore.append(value_index['/'])
             else:
@@ -86,7 +85,7 @@ class Game:
         else:
             self.framescore += [sum([value_index[scorecase(a)] for a in scorecase(self.framescontinuous[-2:])])]
 
-        # Updating the previous running total if new bowls have changed the values.
+        # # Updating the previous running total if new bowls have changed the values.
         if framenumber >= 1 and self.runningtotal[-1] != sum(self.framescore):
             self.runningtotal[-1] = sum(self.framescore[:-1])
         if framenumber >= 2 and self.runningtotal[-2] != sum(self.framescore[:-1]):
@@ -96,10 +95,9 @@ class Game:
         self.runningtotal += [sum(self.framescore)]
 
     # Evaluates on the final frame in the range, if that frame was a strike or a spare.
-    def finalframe(self,framenumber):
-        if framenumber==9 and self.framescontinuous[-1] in ('X', '/'):
+    def finalframe(self, framenumber, pinsdown):
+        if framenumber == 10 and self.framescontinuous[-1] in ('X', '/'):
             print("This is the last frame. To determine the value of your last roll, please bowl again")
-            pinsdown=inputfunction()
             self.frames[-1].extend(pinsdown)
             self.framescontinuous.extend(pinsdown)
             if '/' in self.framescontinuous[-1]:
@@ -108,12 +106,13 @@ class Game:
                 self.framescore[-1]+=value_index[scorecase(pinsdown[0])]
             self.runningtotal[-1]=sum(self.framescore)
             # If a second strike is bowled on the final frame.
-            if self.framescontinuous[-1] == 'X':
-                # pinsdown=inputfunction()
-                self.frames[-1].extend(pinsdown)
-                self.framescontinuous.extend(pinsdown)
-                self.framescore[-1]+=value_index[scorecase(pinsdown[0])]
-                self.runningtotal[-1]=sum(self.framescore)
+            # if self.framescontinuous[-1] == 'X':
+            #     # pinsdown=inputfunction()
+            #     self.frames[-1].extend(pinsdown)
+            #     self.framescontinuous.extend(pinsdown)
+            #     self.framescore[-1]+=value_index[scorecase(pinsdown[0])]
+            #     self.runningtotal[-1]=sum(self.framescore)
+        return jsonpickle.encode(gameframe)
 
 # Function to get pin input from the user.
 def inputfunction():
@@ -167,23 +166,25 @@ def getname():
 # Takes arguments name (from the 'name' object for each player in the dictionary for reference,
 # and framenumber (the frame number (minus one, since we are starting from zero in our iteration).
 # @app.route('/Bowlingapi/scoring/<str:pinsdown>', methods=['PUT'])
-@app.route('/bowlingapi/scoring', methods=['POST'])
-def scoring():
-    # framenumber = len(gameframe['Jason']['frames'])
-    pinsdown=request.json.get('pinsdown', "")
-    try:
-        pinsdown=[a if a in value_index else 'Error' for a in pinsdown.split()]
-        gameframe['Jason'].update(pinsdown)
-        gameframe['Jason'].recursion(pinsdown)
-    except IndexError:
-        return make_response(jsonify({'error': 'Not found'}))
+@app.route('/bowlingapi/frameinput/<name>', methods=['POST'])
+def frameinput(name):
+    pinsdown = request.json.get('pinsdown', "").split()
+    framenumber = len(gameframe[name].frames)
+    if framenumber <= 9:
+        gameframe[name].update(pinsdown)
+        gameframe[name].recursion(pinsdown)
+        gameframe[name].scoring(framenumber)
+    if framenumber == 10:
+        gameframe[name].finalframe(framenumber, pinsdown)
+    # if framenumber == 10:
+    #     return abort(200)
+    # framenumber = len(gameframe[name].frames)
+    # except IndexError:
+    #     return make_response(jsonify({'error': 'Not found'}))
     # gameframe['Jason'].update(pinsdown)
     # gameframe['Jason'].recursion(pinsdown)
     # framenumber = len(gameframe['Jason']['frames'])
-    # gameframe['Jason'].scoring(framenumber)
-    # gameframe['Jason'].finalframe(framenumber)
-    return jsonpickle.encode(gameframe)
-
+    return jsonpickle.encode(gameframe, keys=True)
 # Assigning the function call to a variable.
 # playercount = getplayercount()
 # Getting the names for the players.

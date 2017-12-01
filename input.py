@@ -1,11 +1,15 @@
 import requests
-import json
+import json, jsonpickle
 
-a=requests.post(url='http://localhost:5000/bowlingapi/gamedetails', json={'players':["Jason"]})
-print(a.json())
+def getplayerslist():
+    playerslist = input("Please input your space separated names. ").split()
+    requests.post(url='http://localhost:5000/bowlingapi/gamedetails', json={'players':playerslist})
+    return playerslist
 
-b=requests.post(url='http://localhost:5000/bowlingapi/scoring', json={'pinsdown':["4,5"]})
-print(json.dumps(b.json(),indent=2))
+playerslist = getplayerslist()
 
-c=requests.post(url='http://localhost:5000/bowlingapi/scoring', json={'pinsdown':["6,/"]})
-print(json.dumps(c.json(),indent=2))
+for framenumber in range(10):
+    for name in playerslist:
+        frame = input("Please enter your space separated number of pins knocked down. ")
+        scoreboard = requests.post(url=f'http://localhost:5000/bowlingapi/frameinput/{name}', json={'pinsdown':frame})
+        print(json.dumps(scoreboard.json()[name],indent=2))
