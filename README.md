@@ -2,7 +2,7 @@
 
 This is server side a script that keeps track of the scores of a bowling game. It takes JSON inputs from a user on a few different REST API endpoint, calcutes the score of each frame, and the total score of the game, and returns the current total of the game to the user. These run on the interpreter configured in the Virtual Machine installed on the flask directory.
 
-The rest endpoints, once the server is initiated and running, are as follows: 
+The REST endpoints, once the server is initiated and running, are as follows: 
 
 Takes the player names as a list in JSON format, with key 'players'. POST method.<br>'http:localhost:/bowlingapi/gamedetails'
 
