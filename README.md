@@ -1,10 +1,12 @@
 # Bowling Game
 
+<h4>Synopsis</h4>
 This is a server side script that keeps track of the scores of a bowling game. It runs on a virtual machine using Python3.6, with dependencies of the <code>flask</code>, <code>jsonpickle</code>, and <code>json</code> Libraries.
 
-To run it, make sure it is configured as an executable file with <code>chmod a+x ./BowlingGame.py</code> from the directory. Then activate the virtual environment using the command <code>source flask/bin/activate</code> Then run the file, using <code>./BowlingGame.py</code>
-
 It takes JSON inputs from a user on a few different REST API endpoints, calcutes the score of each frame, and the total score of the game, and returns the current total of the game to the user. These run on the interpreter configured in the Virtual Machine installed on the flask directory.
+
+<h4>Setup Instructions</h4>
+To run it, make sure it is configured as an executable file with <code>chmod a+x ./BowlingGame.py</code> from the directory. Then activate the virtual environment using the command <code>source flask/bin/activate</code> Then run the file, using <code>./BowlingGame.py</code>
 
 <h4>The REST endpoints, once the server is initiated and running, are as follows:<h4>
 <h5>Game details</h5>
