@@ -7,7 +7,7 @@ The REST endpoints, once the server is initiated and running, are as follows:
 
 Takes the player names as a list in JSON format, with key 'players'. POST method.<br>'http:localhost:/bowlingapi/gamedetails'
 
-Takes the number of pins down as space separated string input for each frame, for each player in the game. Takes the variable 'name', as entered at the gamedetails endpoint. Returns a JSON serialized representation of the object in the class with the details for the game so far. POST method.<br>'http:localhost:/bowlingapi/frameinput/name'
+Takes the number of pins down as space separated string input for each frame with JSON key 'pinsdown', for each player in the game. Takes the variable 'name', as entered at the gamedetails endpoint. Returns a JSON serialized representation of the object in the class with the details for the game so far. POST method.<br>'http:localhost:/bowlingapi/frameinput/name'
 
 There is a short client side example script written to use the API as well, utilizing the Requests and JSON library.
 
