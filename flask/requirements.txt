@@ -1,0 +1,7 @@
+The requirements for this application are the following Python3 libraries, as supported by PYPI:
+
+flask
+jsonpickle
+json
+
+These requirements should already be satisfied by the packages installed in the virtual machine, in an effort to make the application more portable.
