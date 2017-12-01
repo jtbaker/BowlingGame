@@ -166,7 +166,7 @@ def getname():
 # Takes arguments name (from the 'name' object for each player in the dictionary for reference,
 # and framenumber (the frame number (minus one, since we are starting from zero in our iteration).
 # @app.route('/Bowlingapi/scoring/<str:pinsdown>', methods=['PUT'])
-@app.route('/bowlingapi/frameinput/<name>', methods=['POST'])
+@app.route('/bowlingapi/frameinput/<name>', methods=['POST','GET'])
 def frameinput(name):
     pinsdown = request.json.get('pinsdown', "").split()
     framenumber = len(gameframe[name].frames)

@@ -1,5 +1,7 @@
+#!flask/bin/python3.6
+
 import requests
-import json, jsonpickle
+import json
 
 def getplayerslist():
     playerslist = input("Please input your space separated names. ").split()
@@ -8,7 +10,7 @@ def getplayerslist():
 
 playerslist = getplayerslist()
 
-for framenumber in range(10):
+for framenumber in range(12):
     for name in playerslist:
         frame = input("Please enter your space separated number of pins knocked down. ")
         scoreboard = requests.post(url=f'http://localhost:5000/bowlingapi/frameinput/{name}', json={'pinsdown':frame})
