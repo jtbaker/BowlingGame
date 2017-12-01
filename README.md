@@ -11,7 +11,7 @@ The REST endpoints, once the server is initiated and running, are as follows:
 Takes the player names as a list in JSON format, with key 'players'. POST method.<br>
 'http:localhost:5000/bowlingapi/gamedetails'
 <ul>
-  <li><p>Example request using CURL: <code>$ curl -i -H "Content-Type: application/json" -X POST -d '{"players":[Mark, Eric, John]}' http://localhost:5000/bowlingapi/gamedetails</code></p></li><br>
+  <li><p>Example request using CURL: <code>$ curl -i -H "Content-Type: application/json" -X POST -d '{"players":[Mark, Eric, John]}' http://localhost:5000/bowlingapi/gamedetails</code></p></li>
   <li><p>Example request using Python's <code>Requests</code> module.:<code>requests.post(url=f'http://localhost:5000/bowlingapi/frameinput/Mark', json={'players':[Mark, Eric, John]})</code></p></li></ul>
 
 <h4>Pinsdown</h4>
