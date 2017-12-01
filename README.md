@@ -19,7 +19,8 @@ Takes the number of pins down as space separated string input for each frame wit
 <ul>
   <li><p>Example request using CURL: <code>$ curl -i -H "Content-Type: application/json" -X POST -d '{"pinsdown":"4 /"}' http://localhost:5000/bowlingapi/frameinput/name</code><p></li>
   <li><p>Example request using Python's <code>Requests</code> module: <code>requests.post(url=f'http://localhost:5000/bowlingapi/frameinput/Mark', json={'pinsdown':'4 /'})</code></p></li></ul>
-
-There is a short client side example script written to use the API as well, utilizing the Requests and JSON library.
-
-Thanks for checking out my project! More to come. Will be incorporating a GUI front end view in the future.
+  <br>
+  
+<h4>Client side</h4>
+<p>There is a short client side example script written to use the API as well, utilizing the Requests and JSON library.
+Thanks for checking out my project! More to come. Will be incorporating a GUI front end view in the future.</p>
