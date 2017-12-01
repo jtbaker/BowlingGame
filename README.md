@@ -1,6 +1,7 @@
 # BowlingGame
 
-This is server side a script that keeps track of the scores of a bowling game. It takes JSON inputs from a user on a few different REST API endpoint, calcutes the score of each frame, and the total score of the game, and returns the current total of the game to the user. These run on the interpreter configured in the Virtual Machine installed on the flask directory.
+This is server side a script that keeps track of the scores of a bowling game. To run it, configure the the BowlingGame.py file as an executable with <code>chmod a+x ./BowlingGame.py</code> from the directory.
+It takes JSON inputs from a user on a few different REST API endpoint, calcutes the score of each frame, and the total score of the game, and returns the current total of the game to the user. These run on the interpreter configured in the Virtual Machine installed on the flask directory.
 
 The REST endpoints, once the server is initiated and running, are as follows: 
 
