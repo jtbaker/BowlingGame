@@ -1,10 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="a8239f12-ef99-4d61-b3de-34389d411aa8" name="Default" comment="Final configu">
+    <list default="true" id="a8239f12-ef99-4d61-b3de-34389d411aa8" name="Default" comment="Final configuration with both Server and Client side.">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change beforePath="$PROJECT_DIR$/BowlingGame.py" afterPath="$PROJECT_DIR$/BowlingGame.py" />
-      <change beforePath="$PROJECT_DIR$/input.py" afterPath="$PROJECT_DIR$/input.py" />
+      <change beforePath="$PROJECT_DIR$/input.py" afterPath="$PROJECT_DIR$/clientside.py" />
     </list>
     <ignored path="$PROJECT_DIR$/.idea/shelf/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -22,7 +21,7 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="BowlingGame.py" pinned="false" current-in-tab="true">
+      <file leaf-file-name="BowlingGame.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/BowlingGame.py">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="318">
@@ -64,11 +63,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="input.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/input.py">
+      <file leaf-file-name="clientside.py" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/clientside.py">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="330">
-              <caret line="22" column="0" lean-forward="true" selection-start-line="22" selection-start-column="0" selection-end-line="22" selection-end-column="0" />
+              <caret line="22" column="0" lean-forward="false" selection-start-line="22" selection-start-column="0" selection-end-line="22" selection-end-column="0" />
               <folding>
                 <element signature="e#23#38#0" expanded="true" />
               </folding>
@@ -267,7 +266,7 @@
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <module name="BowlingGame" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/input.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/clientside.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
@@ -654,7 +653,14 @@
       <option name="project" value="LOCAL" />
       <updated>1512102822060</updated>
     </task>
-    <option name="localTasksCounter" value="32" />
+    <task id="LOCAL-00032" summary="Final configu">
+      <created>1512141606373</created>
+      <option name="number" value="00032" />
+      <option name="presentableId" value="LOCAL-00032" />
+      <option name="project" value="LOCAL" />
+      <updated>1512141606373</updated>
+    </task>
+    <option name="localTasksCounter" value="33" />
     <servers />
   </component>
   <component name="ToolWindowManager">
@@ -746,7 +752,8 @@
     <MESSAGE value="Fine tuning some of the verbiage." />
     <MESSAGE value="Converted to OOP functionality. JSON encoding is handled by jsonpickle, which has been installed in the VM interpreter." />
     <MESSAGE value="IML file." />
-    <option name="LAST_COMMIT_MESSAGE" value="IML file." />
+    <MESSAGE value="Final configu" />
+    <option name="LAST_COMMIT_MESSAGE" value="Final configu" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager />
@@ -794,14 +801,14 @@
     <entry file="file://$APPLICATION_CONFIG_DIR$/scratches/scratch_12.py" />
     <entry file="file://$USER_HOME$/Desktop/parsename.py" />
     <entry file="file://$USER_HOME$/Desktop/parsename.py" />
-    <entry file="file://$PROJECT_DIR$/input.py" />
+    <entry file="file://$PROJECT_DIR$/clientside.py" />
     <entry file="file://$APPLICATION_CONFIG_DIR$/scratches/scratch_9.py" />
     <entry file="file://$USER_HOME$/Desktop/parsename.py" />
     <entry file="file://$APPLICATION_CONFIG_DIR$/scratches/scratch_9.py" />
-    <entry file="file://$PROJECT_DIR$/input.py" />
+    <entry file="file://$PROJECT_DIR$/clientside.py" />
     <entry file="file://$USER_HOME$/Desktop/parsename.py" />
     <entry file="file://$APPLICATION_CONFIG_DIR$/scratches/scratch_9.py" />
-    <entry file="file://$PROJECT_DIR$/input.py" />
+    <entry file="file://$PROJECT_DIR$/clientside.py" />
     <entry file="file://$APPLICATION_CONFIG_DIR$/scratches/scratch_8.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="434">
@@ -871,22 +878,22 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/input.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="330">
-          <caret line="22" column="0" lean-forward="true" selection-start-line="22" selection-start-column="0" selection-end-line="22" selection-end-column="0" />
-          <folding>
-            <element signature="e#23#38#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/BowlingGame.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="318">
           <caret line="28" column="74" lean-forward="false" selection-start-line="28" selection-start-column="74" selection-end-line="28" selection-end-column="74" />
           <folding>
             <element signature="e#23#103#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/clientside.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="330">
+          <caret line="22" column="0" lean-forward="false" selection-start-line="22" selection-start-column="0" selection-end-line="22" selection-end-column="0" />
+          <folding>
+            <element signature="e#23#38#0" expanded="true" />
           </folding>
         </state>
       </provider>
