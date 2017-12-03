@@ -76,8 +76,8 @@ class Game:
         except IndexError:
             pass
 
-    # Scoring a strike in any given frame.
     def scoring(self, framenumber):
+        # Scoring a strike in any given frame.
         if 'X' in self.frames[-1]:
             self.framescore.append(value_index['X'])
 
