@@ -1,7 +1,7 @@
 # Bowling Game
 
 <h4>Synopsis</h4>
-This is a server side application that keeps track of the scores of a bowling game. It runs on a virtual machine using Python3.6 with the <code>flask</code> framework, with dependencies of the, <code>jsonpickle</code>, and <code>json</code> Libraries.
+This is a server side application that keeps track of the scores of a bowling game. It runs on a virtual machine using Python3.6 with the <code>flask</code> framework, with dependencies of the <code>jsonpickle</code>, and <code>json</code> Libraries.
 
 It takes JSON inputs from a user on a few different REST API endpoints, calcutes the score of each frame, and the total score of the game, and returns the current total of the game to the user. These run on the interpreter configured in the Virtual Machine installed on the flask directory.
 
