@@ -129,7 +129,7 @@ def scorecase(items):
     else:
         return items
 
-# Getting the player names into our dictionary.
+# Getting the player names, and assigning their Game objects as the associated values, into our dictionary.
 @app.route('/bowlingapi/gamedetails', methods=['POST'])
 def gamedetails():
     gamedetails = request.json.get('players', "")
