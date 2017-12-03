@@ -3,13 +3,14 @@
 import requests
 import json
 
+
 def getplayerslist():
     playerslist = input("Please input your space separated names. ").split()
     requests.post(url='http://localhost:5000/bowlingapi/gamedetails', json={'players':playerslist})
     return playerslist
 playerslist = getplayerslist()
 
-framenumber=1
+framenumber = 1
 
 while framenumber <=12:
     for name in playerslist:
@@ -17,6 +18,6 @@ while framenumber <=12:
         try:
             scoreboard = requests.post(url=f'http://localhost:5000/bowlingapi/frameinput/{name}', json={'pinsdown':frame})
             print(json.dumps(scoreboard.json()[name],indent=2))
-            framenumber += 1
         except KeyError:
             continue
+    framenumber += 1

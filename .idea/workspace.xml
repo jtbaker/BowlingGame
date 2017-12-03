@@ -3,19 +3,7 @@
   <component name="ChangeListManager">
     <list default="true" id="a8239f12-ef99-4d61-b3de-34389d411aa8" name="Default" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change beforePath="$PROJECT_DIR$/flask/lib/python3.6/site-packages/Flask-0.12.2.dist-info/RECORD" afterPath="$PROJECT_DIR$/flask/lib/python3.6/site-packages/Flask-0.12.2.dist-info/RECORD" />
-      <change beforePath="$PROJECT_DIR$/flask/lib/python3.6/site-packages/Jinja2-2.10.dist-info/LICENSE.txt" afterPath="$PROJECT_DIR$/flask/lib/python3.6/site-packages/Jinja2-2.10.dist-info/LICENSE.txt" />
-      <change beforePath="$PROJECT_DIR$/flask/lib/python3.6/site-packages/Jinja2-2.10.dist-info/RECORD" afterPath="$PROJECT_DIR$/flask/lib/python3.6/site-packages/Jinja2-2.10.dist-info/RECORD" />
-      <change beforePath="$PROJECT_DIR$/flask/lib/python3.6/site-packages/MarkupSafe-1.0.dist-info/RECORD" afterPath="$PROJECT_DIR$/flask/lib/python3.6/site-packages/MarkupSafe-1.0.dist-info/RECORD" />
-      <change beforePath="$PROJECT_DIR$/flask/lib/python3.6/site-packages/Werkzeug-0.12.2.dist-info/LICENSE.txt" afterPath="$PROJECT_DIR$/flask/lib/python3.6/site-packages/Werkzeug-0.12.2.dist-info/LICENSE.txt" />
-      <change beforePath="$PROJECT_DIR$/flask/lib/python3.6/site-packages/Werkzeug-0.12.2.dist-info/RECORD" afterPath="$PROJECT_DIR$/flask/lib/python3.6/site-packages/Werkzeug-0.12.2.dist-info/RECORD" />
-      <change beforePath="$PROJECT_DIR$/flask/lib/python3.6/site-packages/click-6.7.dist-info/RECORD" afterPath="$PROJECT_DIR$/flask/lib/python3.6/site-packages/click-6.7.dist-info/RECORD" />
-      <change beforePath="$PROJECT_DIR$/flask/lib/python3.6/site-packages/itsdangerous-0.24.dist-info/RECORD" afterPath="$PROJECT_DIR$/flask/lib/python3.6/site-packages/itsdangerous-0.24.dist-info/RECORD" />
-      <change beforePath="$PROJECT_DIR$/flask/lib/python3.6/site-packages/jsonpickle-0.9.5.dist-info/RECORD" afterPath="$PROJECT_DIR$/flask/lib/python3.6/site-packages/jsonpickle-0.9.5.dist-info/RECORD" />
-      <change beforePath="$PROJECT_DIR$/flask/lib/python3.6/site-packages/pip-9.0.1.dist-info/RECORD" afterPath="$PROJECT_DIR$/flask/lib/python3.6/site-packages/pip-9.0.1.dist-info/RECORD" />
-      <change beforePath="$PROJECT_DIR$/flask/lib/python3.6/site-packages/pkg_resources/_vendor/pyparsing.py" afterPath="$PROJECT_DIR$/flask/lib/python3.6/site-packages/pkg_resources/_vendor/pyparsing.py" />
-      <change beforePath="$PROJECT_DIR$/flask/lib/python3.6/site-packages/wheel-0.30.0.dist-info/RECORD" afterPath="$PROJECT_DIR$/flask/lib/python3.6/site-packages/wheel-0.30.0.dist-info/RECORD" />
-      <change beforePath="$PROJECT_DIR$/flask/pip-selfcheck.json" afterPath="$PROJECT_DIR$/flask/pip-selfcheck.json" />
+      <change beforePath="$PROJECT_DIR$/clientside.py" afterPath="$PROJECT_DIR$/clientside.py" />
     </list>
     <ignored path="$PROJECT_DIR$/.idea/shelf/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -33,11 +21,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="BowlingGame.py" pinned="false" current-in-tab="true">
+      <file leaf-file-name="BowlingGame.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/BowlingGame.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1665">
-              <caret line="111" column="54" lean-forward="false" selection-start-line="111" selection-start-column="54" selection-end-line="111" selection-end-column="54" />
+            <state relative-caret-position="16">
+              <caret line="28" column="74" lean-forward="false" selection-start-line="28" selection-start-column="74" selection-end-line="28" selection-end-column="74" />
               <folding>
                 <element signature="e#23#103#0" expanded="true" />
               </folding>
@@ -45,44 +33,14 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="scratch_10.py" pinned="false" current-in-tab="false">
-        <entry file="file://$APPLICATION_CONFIG_DIR$/scratches/scratch_10.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="915">
-              <caret line="95" column="19" lean-forward="false" selection-start-line="95" selection-start-column="19" selection-end-line="95" selection-end-column="19" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="clientside.py" pinned="false" current-in-tab="false">
+      <file leaf-file-name="clientside.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/clientside.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="255">
-              <caret line="17" column="122" lean-forward="false" selection-start-line="17" selection-start-column="25" selection-end-line="17" selection-end-column="122" />
+            <state relative-caret-position="165">
+              <caret line="11" column="0" lean-forward="true" selection-start-line="11" selection-start-column="0" selection-end-line="11" selection-end-column="0" />
               <folding>
                 <element signature="e#23#38#0" expanded="true" />
               </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="requirements.txt" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/requirements.txt">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="90">
-              <caret line="6" column="17" lean-forward="false" selection-start-line="6" selection-start-column="17" selection-end-line="6" selection-end-column="17" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="README.md" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/README.md">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="210">
-              <caret line="14" column="203" lean-forward="false" selection-start-line="14" selection-start-column="203" selection-end-line="14" selection-end-column="203" />
-              <folding />
             </state>
           </provider>
         </entry>
@@ -140,13 +98,14 @@
         <option value="$PROJECT_DIR$/BowlingGame.py" />
         <option value="$PROJECT_DIR$/flask/requirements.txt" />
         <option value="$PROJECT_DIR$/README.md" />
+        <option value="$PROJECT_DIR$/clientside.py" />
       </list>
     </option>
   </component>
   <component name="ProjectFrameBounds">
-    <option name="x" value="-1446" />
+    <option name="x" value="-1444" />
     <option name="y" value="-298" />
-    <option name="width" value="1031" />
+    <option name="width" value="1029" />
     <option name="height" value="1173" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
@@ -165,7 +124,6 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -173,29 +131,12 @@
               <item name="BowlingGame" type="b2602c69:ProjectViewProjectNode" />
               <item name="BowlingGame" type="462c0819:PsiDirectoryNode" />
             </path>
-            <path>
-              <item name="BowlingGame" type="b2602c69:ProjectViewProjectNode" />
-              <item name="BowlingGame" type="462c0819:PsiDirectoryNode" />
-              <item name="flask" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="BowlingGame" type="b2602c69:ProjectViewProjectNode" />
-              <item name="BowlingGame" type="462c0819:PsiDirectoryNode" />
-              <item name="flask" type="462c0819:PsiDirectoryNode" />
-              <item name="lib" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="BowlingGame" type="b2602c69:ProjectViewProjectNode" />
-              <item name="BowlingGame" type="462c0819:PsiDirectoryNode" />
-              <item name="flask" type="462c0819:PsiDirectoryNode" />
-              <item name="lib" type="462c0819:PsiDirectoryNode" />
-              <item name="python3.6" type="462c0819:PsiDirectoryNode" />
-            </path>
           </expand>
           <select />
         </subPane>
       </pane>
       <pane id="Scratches" />
+      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -364,20 +305,6 @@
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <module name="untitled3" />
     </configuration>
-    <configuration default="true" type="tests" factoryName="Unittests">
-      <option name="INTERPRETER_OPTIONS" value="" />
-      <option name="PARENT_ENVS" value="true" />
-      <envs />
-      <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="" />
-      <option name="IS_MODULE_SDK" value="false" />
-      <option name="ADD_CONTENT_ROOTS" value="true" />
-      <option name="ADD_SOURCE_ROOTS" value="true" />
-      <module name="untitled3" />
-      <option name="_new_additionalArguments" value="&quot;&quot;" />
-      <option name="_new_target" value="&quot;&quot;" />
-      <option name="_new_targetType" value="&quot;PATH&quot;" />
-    </configuration>
     <configuration default="true" type="tests" factoryName="py.test">
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
@@ -422,6 +349,20 @@
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <module name="untitled3" />
       <option name="_new_regexPattern" value="&quot;&quot;" />
+      <option name="_new_additionalArguments" value="&quot;&quot;" />
+      <option name="_new_target" value="&quot;&quot;" />
+      <option name="_new_targetType" value="&quot;PATH&quot;" />
+    </configuration>
+    <configuration default="true" type="tests" factoryName="Unittests">
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs />
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="" />
+      <option name="IS_MODULE_SDK" value="false" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <module name="untitled3" />
       <option name="_new_additionalArguments" value="&quot;&quot;" />
       <option name="_new_target" value="&quot;&quot;" />
       <option name="_new_targetType" value="&quot;PATH&quot;" />
@@ -740,13 +681,13 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="9" y="23" width="1932" height="1173" extended-state="0" />
+    <frame x="-1444" y="-298" width="1029" height="1173" extended-state="0" />
     <layout>
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.10518053" sideWeight="0.4837341" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.2682216" sideWeight="0.4837341" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.35355452" sideWeight="0.33860978" order="7" side_tool="true" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.31184834" sideWeight="0.66139024" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.32985783" sideWeight="0.49713466" order="10" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.4877161" sideWeight="0.66139024" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32985783" sideWeight="0.49713466" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="Python Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25358167" sideWeight="0.4950495" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32985783" sideWeight="0.493994" order="9" side_tool="false" content_ui="tabs" />
@@ -949,19 +890,9 @@
     </entry>
     <entry file="file://$APPLICATION_CONFIG_DIR$/scratches/scratch_10.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="915">
-          <caret line="95" column="19" lean-forward="false" selection-start-line="95" selection-start-column="19" selection-end-line="95" selection-end-column="19" />
+        <state relative-caret-position="195">
+          <caret line="13" column="18" lean-forward="false" selection-start-line="13" selection-start-column="18" selection-end-line="13" selection-end-column="18" />
           <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/clientside.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="255">
-          <caret line="17" column="122" lean-forward="false" selection-start-line="17" selection-start-column="25" selection-end-line="17" selection-end-column="122" />
-          <folding>
-            <element signature="e#23#38#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -976,17 +907,27 @@
     <entry file="file://$PROJECT_DIR$/README.md">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="210">
-          <caret line="14" column="203" lean-forward="false" selection-start-line="14" selection-start-column="203" selection-end-line="14" selection-end-column="203" />
+          <caret line="14" column="4" lean-forward="true" selection-start-line="14" selection-start-column="4" selection-end-line="14" selection-end-column="4" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/BowlingGame.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1665">
-          <caret line="111" column="54" lean-forward="false" selection-start-line="111" selection-start-column="54" selection-end-line="111" selection-end-column="54" />
+        <state relative-caret-position="16">
+          <caret line="28" column="74" lean-forward="false" selection-start-line="28" selection-start-column="74" selection-end-line="28" selection-end-column="74" />
           <folding>
             <element signature="e#23#103#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/clientside.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="165">
+          <caret line="11" column="0" lean-forward="true" selection-start-line="11" selection-start-column="0" selection-end-line="11" selection-end-column="0" />
+          <folding>
+            <element signature="e#23#38#0" expanded="true" />
           </folding>
         </state>
       </provider>
