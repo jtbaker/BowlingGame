@@ -110,13 +110,6 @@ class Game:
                 else:
                     self.framescore[-1]+=value_index[scorecase(self.framescontinuous[-2:])]
             self.runningtotal[-1]=sum(self.framescore)
-            # If a second strike is bowled on the final frame.
-            # if self.framescontinuous[-1] == 'X':
-            #     # pinsdown=inputfunction()
-            #     self.frames[-1].extend(pinsdown)
-            #     self.framescontinuous.extend(pinsdown)
-            #     self.framescore[-1]+=value_index[scorecase(pinsdown[0])]
-            #     self.runningtotal[-1]=sum(self.framescore)
         return jsonpickle.encode(gameframe)
 
 
