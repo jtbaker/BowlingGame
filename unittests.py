@@ -1,10 +1,7 @@
 from unittest import TestCase
 import unittest
-import BowlingGame
-from BowlingGame import frameinput, gameframe, gamedetails, app
 import requests
 import json
-import sys
 
 
 
