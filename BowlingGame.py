@@ -92,6 +92,7 @@ class Game:
     def finalframe(self, pinsdown, name):
         if 'X' in self.frames[-1][:1]:
             self.frames[-1].extend(pinsdown)
+<<<<<<< HEAD
             self.framescore[-1] = sum([value_index[a] for a in [scorecase(a) for a in (self.frames[-1][0:3])]])
             self.runningtotal[-1] = sum(self.framescore)
             if 'X' in self.frames[-2]:
@@ -109,6 +110,16 @@ class Game:
             self.gameresults = f'Game over, {name}. Final score: {self.runningtotal[-1]}'
             self.gameinprogress = False
 
+=======
+            self.framescontinuous.extend(pinsdown)
+            self.recursion()
+            if len(self.frames[-1]) <=2:
+                if '/' in self.frames[-1]:
+                    self.framescore[-1] += value_index[scorecase(pinsdown[-1][0])]
+                else:
+                    self.framescore[-1]+=value_index[scorecase(self.framescontinuous[-2:])]
+            self.runningtotal[-1]=sum(self.framescore)
+>>>>>>> 060482d15fdf1e3f7a9a7c5a17462655afaa89b9
         return jsonpickle.encode(gameframe)
 
 

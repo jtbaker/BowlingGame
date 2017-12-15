@@ -15,6 +15,7 @@ Takes the player names as a list in JSON format, with key 'players'. POST method
 <ul>
   <li><p>Example request using CURL: <code>$ curl -i -H "Content-Type: application/json" -X POST -d '{"players":[Mark, Eric, John]}' http://localhost:5000/bowlingapi/gamedetails</code></p></li>
   <li><p>Example request using Python's <code>Requests</code> module:<code>requests.post(url=f'http://localhost:5000/bowlingapi/gamedetails', json={'players':[Mark, Eric, John]})</code></p></li></ul>
+<<<<<<< HEAD
 
 <h5>Game Information</h5>
 Get information at for the game at anytime. Takes <code>GET</code> requests.
@@ -23,6 +24,8 @@ Get information at for the game at anytime. Takes <code>GET</code> requests.
       <li><p>Example request using CURL: <code>$ curl -i http:localhost:5000/bowlingapi/game</code></p></li>
       <li><p>Example request using Python's <code>Requests</code> module:<code>requests.get(url='http://localhost:5000/bowlingapi/game')</code></p></li>
     </ul>
+=======
+>>>>>>> 060482d15fdf1e3f7a9a7c5a17462655afaa89b9
 
 <h5>Frame Input</h5>
 Takes the number of pins down as space separated string input for each frame with JSON key 'pinsdown', for each player in the game. Takes the variable 'name', as entered at the gamedetails endpoint. Returns a JSON serialized representation of the object in the class with the details for the game so far. POST method.<br>
