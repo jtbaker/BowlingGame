@@ -36,6 +36,9 @@ class TestFlaskApiUsingRequests(TestCase):
             for x in frame_input_samples[name].get('input'):
                 requests.post(f'http://localhost:5000/bowlingapi/frameinput/{name}', json={"pinsdown": x})
         response = requests.get('http://localhost:5000/bowlingapi/game')
+
+        # Tests to make sure the final 'running score' for each object returned from the API response, matches the final
+        # score value from our object iterable.
         self.assertEqual([response.json()[name]['runningtotal'][-1] for name in frame_input_samples], [frame_input_samples[name]["score"] for name in frame_input_samples])
         # To see the result of the final object.
         print(json.dumps(response.json()))
