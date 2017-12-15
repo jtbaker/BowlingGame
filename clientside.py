@@ -10,14 +10,11 @@ def getplayerslist():
     return playerslist
 playerslist = getplayerslist()
 
-framenumber = 1
+scoreboard = requests.get('http://localhost:5000/bowlingapi/game').json()
 
-while framenumber <=12:
-    for name in playerslist:
+for name in playerslist:
+    while scoreboard[name]['gameinprogress'] is True:
         frame = input("Please enter your space separated number of pins knocked down. ")
-        try:
-            scoreboard = requests.post(url=f'http://localhost:5000/bowlingapi/frameinput/{name}', json={'pinsdown':frame})
-            print(json.dumps(scoreboard.json()[name],indent=2))
-        except KeyError:
-            continue
-    framenumber += 1
+        scoreboard = requests.post(url=f'http://localhost:5000/bowlingapi/frameinput/{name}', json={'pinsdown': frame})
+        scoreboard = scoreboard.json()
+        print(json.dumps(scoreboard,indent=2))
