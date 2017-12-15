@@ -79,8 +79,8 @@ class Game:
         else:
             self.framescore.append(sum([value_index[a] for a in scorecase(self.frames[-1])]))
 
-        # # Updating the previous running total if new bowls have changed the values.
-        if framenumber >= 1 and self.runningtotal[-1] != sum(self.framescore):
+        # Updating the previous running total if new bowls have changed the values.
+        if framenumber == 1 and self.runningtotal[-1] != sum(self.framescore):
             self.runningtotal[-1] = sum(self.framescore[:-1])
         if framenumber >= 2 and self.runningtotal[-2] != sum(self.framescore[:-1]):
             self.runningtotal[-2] = sum(self.framescore[:-2])
@@ -150,7 +150,7 @@ def response():
 def frameinput(name):
     pinsdown = request.json.get('pinsdown', "").split()
     pinsdown = [a if a in value_index else 'Error' for a in pinsdown]
-    if 'Error' in pinsdown or sum([value_index[a] for a in pinsdown if a.isdigit() is True]) > 10 or bool(pinsdown) is False:
+    if 'Error' in pinsdown or sum([value_index[a] for a in pinsdown if a.isdigit() is True]) > 9 or bool(pinsdown) is False:
         return make_response(jsonify({name:{"Invalid Input": True, "gameinprogress": True}}))
     print(type(gameframe[name]),gameframe.get(name))
     framenumber = len(gameframe[name].frames)

@@ -25,7 +25,7 @@ Get information at for the game at anytime. Takes <code>GET</code> requests.
     </ul>
 
 <h5>Frame Input</h5>
-Takes the number of pins down as space separated string input for each frame with JSON key 'pinsdown', for each player in the game. Takes the variable 'name', as entered at the gamedetails endpoint. Returns a JSON serialized representation of the object in the class with the details for the game so far. POST method.<br>
+Takes the number of pins down as space separated string input for each frame with JSON key 'pinsdown', for each player in the game. If nothing is scored in one side of the frame, please enter '0'. Takes the variable 'name', as entered at the gamedetails endpoint. Returns a JSON serialized representation of the object in the class with the details for the game so far. POST method.<br>
 <a href=http:localhost:5000/bowlingapi/frameinput/name>http:localhost:5000/bowlingapi/frameinput/name</a>
 <ul>
   <li><p>Example request using CURL: <code>$ curl -i -H "Content-Type: application/json" -X POST -d '{"pinsdown":"4 /"}' http://localhost:5000/bowlingapi/frameinput/name</code><p></li>
